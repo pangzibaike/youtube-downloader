@@ -179,38 +179,5 @@ def cleanup_once():
             if now - os.path.getmtime(path) > FILE_EXPIRE:
                 os.remove(path)
 
-@app.route("/recent")
-def recent_downloads():
-
-    try:
-
-        result = subprocess.check_output(
-            "journalctl -u ytdlp -n 200 | grep 'Extracting URL'",
-            shell=True
-        ).decode()
-
-        videos = []
-
-        for line in result.splitlines():
-
-            m = re.search(r'(https://www\.youtube\.com/watch\?v=[\w-]+|https://youtu\.be/[\w-]+)', line)
-
-            if m:
-                videos.append(m.group(0))
-
-        # 去重并保留顺序
-        seen = set()
-        unique = []
-
-        for v in videos[::-1]:
-            if v not in seen:
-                unique.append(v)
-                seen.add(v)
-
-        return jsonify(unique[:10])
-
-    except Exception:
-        return jsonify([])
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001)

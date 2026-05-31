@@ -138,7 +138,11 @@ def download_video(task_id, url):
             url
         ]
 
-        subprocess.run(cmd, check=True)
+        subprocess.run(
+            cmd,
+            check=True,
+            timeout=1800
+        )
 
         TASKS[task_id]["status"] = "finished"
         for file in os.listdir(VIDEO_DIR):

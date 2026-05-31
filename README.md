@@ -1,20 +1,92 @@
-YouTube Downloader
+# YouTube Downloader
 
-一个基于 Flask + yt-dlp 的轻量级 YouTube 下载站。
+A lightweight YouTube video downloader built with Flask and yt-dlp.
 
-特点：
+## Features
 
-- 无需注册
-- 支持高清视频
-- 自动合并音视频
-- 自动清理下载文件
-- 磁盘空间保护
-- 单任务下载避免资源耗尽
+* Download YouTube videos through a web interface
+* Automatic video/audio merging (MP4)
+* Video preview before download
+* English / Chinese interface
+* Automatic file cleanup after 1 hour
+* Disk space protection
+* Single download queue to prevent resource exhaustion
+* Download timeout protection
 
-运行：
+## Requirements
 
-apt install python3 python3-flask
+* Python 3
+* Flask
+* yt-dlp
+* ffmpeg
 
-wget https://github.com/xxx/server.py
+## Installation
 
+### Install Flask
+
+```bash
+pip install Flask
+```
+
+### Install yt-dlp
+
+```bash
+python3 -m pip install -U yt-dlp
+```
+
+Verify installation:
+
+```bash
+yt-dlp --version
+```
+
+### Install ffmpeg
+
+Debian / Ubuntu:
+
+```bash
+apt update
+apt install -y ffmpeg
+```
+
+## Run
+
+```bash
 python3 server.py
+```
+
+Open your browser:
+
+```text
+http://SERVER_IP:5001
+```
+
+## Project Structure
+
+```text
+.
+├── server.py
+├── index.html
+└── videos/
+```
+
+## Notes
+
+* Only YouTube links are supported.
+* Downloaded files are automatically removed after one hour.
+* Only one download task can run at a time.
+* A minimum of 1 GB free disk space is required.
+* Downloads are automatically terminated after 30 minutes.
+
+## Security Improvements
+
+This project includes:
+
+* Domain validation for YouTube URLs
+* Download timeout protection
+* Automatic cleanup of expired files
+* Disk space checks before downloading
+
+## License
+
+MIT License

@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 app = Flask(__name__)
 
 VIDEO_DIR = "videos"
-YTDLP = "/opt/ytdlp/yt-dlp"
+YTDLP = "yt-dlp"
 
 FILE_EXPIRE = 3600  # 1小时删除
 MIN_FREE_SPACE = 1024 * 1024 * 1024  # 最少需要1GB空闲

@@ -1,0 +1,9 @@
+videos/
+
+**pycache**/
+*.pyc
+
+cookies.txt
+
+.env
+*.log

@@ -73,7 +73,7 @@ def create_task():
     if not url:
         return jsonify({"error": "no url"})
 
-    if "youtube.com" not in url and "youtu.be" not in url:
+    if not is_youtube_url(url):
         return jsonify({"error": "invalid url"})
 
     if DOWNLOADING:

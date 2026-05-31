@@ -22,11 +22,31 @@ DOWNLOADING = False
 if not os.path.exists(VIDEO_DIR):
     os.makedirs(VIDEO_DIR)
 
-
 @app.route("/")
 def home():
     return send_file("index.html")
 
+def is_youtube_url(url):
+
+    try:
+
+        host = urlparse(url).hostname
+
+        if not host:
+            return False
+
+        host = host.lower()
+
+        return host in [
+            "youtube.com",
+            "www.youtube.com",
+            "youtu.be",
+            "www.youtu.be",
+            "m.youtube.com"
+        ]
+
+    except:
+        return False
 
 # 检查磁盘空间
 def check_disk_space():
